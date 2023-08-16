@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Product List</title>
+{% endblock title %}
+
+
+{% block body %}
+<h2 class="header">Product List</h2>
+<table class="table table-stripped table-hover table-bordered table-dark">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Discount(%)</th>
+            <th>Product Category ID</th>
+            <th>Update</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for md in mydata %}
+        <tr>
+            <td> {{md.pId}}</td>
+            <td> {{md.pName}}</td>
+            <td> {{md.pDesc}}</td>
+            <td> {{md.price}}</td>
+            <td> {{md.discount}}</td>
+            <td> {{md.pcId}}</td>
+            <td><a href="{% url 'updatepro' id=md.pId %}"><button class="btn btn-secondary">Update</button></a></td>
+            <td><a href="{% url 'deletepro' id=md.pId %}"><button class="btn btn-danger">Remove</button></a></td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock body %}

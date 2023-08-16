@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+
+{% block title %}
+<title>Your Cart</title>
+{% endblock title %}
+
+
+{% block body %}
+<h1 class="header">Your Cart</h1>
+<form method="post">
+    {% csrf_token %}
+
+    <table class="table table-stripped table-dark table hover table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Net Price</th>
+                <th>Select</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dt in mydata %}
+            <tr>
+                <td>{{dt.pName}}</td>
+                <td>{{dt.pDesc}}</td>
+                <td>{{dt.price}}</td>
+                <td>{{dt.discount}}</td>
+                <td>{{dt.price|mul:dt.discount|div:100|sub:dt.price|abs}}</td>
+                <td><input type="checkbox" name="chk" value="{{dt.pId}}"></td>
+                <td><a href="{% url 'delcart' id=dt.pId %}"><button class="btn btn-danger">Remove</button></a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" style="background-color: brown;color: yellow;font-size: large;font-weight: bold;">Your
+                    Order(s)</td>
+                <td colspan="4" style="background-color: brown;"><input type="submit" value="Place Order"
+                        class="btn btn-lg btn-warning">
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>
+{% endblock body %}

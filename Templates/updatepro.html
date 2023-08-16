@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Update Product</title>
+{% endblock title %}
+
+
+{% block body %}
+<h2 class="header">Update Product</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>{{myform}}</table>
+    <input type="submit" value="Update" class="btn btn-success">
+</form>
+{% endblock body %}

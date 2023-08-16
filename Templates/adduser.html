@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <br>
+    {{myform}}
+    <input type="submit" value="Register" class="btn btn-danger">
+</form>
+<br>
+<h3 class="text-center bg-dark text-white">Already have an account, <a href="logins">Click here</a></h3>
+{% endblock body %}

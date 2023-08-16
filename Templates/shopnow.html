@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Shop Now</title>
+{% endblock title %}
+
+
+{% block body %}
+<script>
+    var request;
+    function getpro(id) {
+        // instantiate an XHR (XMLHttpRequest ) object 
+        request = new XMLHttpRequest();
+        // URl will take id to views.py and fetch data from there
+        url = "prolist?id=" + id;
+        alert(url);
+        request.onreadystatechange = output;
+        request.open("GET", url);
+        request.send();
+    }
+
+    function output() {
+        console.log(JSON.parse(request.responseText));
+        var result;
+        if (request.readyState == 4 && request.status == 200) {
+            result = JSON.parse(request.responseText);
+            tbody = document.getElementById("tbody");
+            tbody.innerText = "";
+            for (res of result) {
+                console.log("object name is ", res.pName);
+                console.log("object price is ", res.price);
+                console.log("object Discount is ", res.discount);
+                console.log("object desc is ", res.pDesc);
+                console.log("============================");
+                tr = document.createElement("tr");
+
+                td1 = document.createElement("td");
+                td1.innerText = res.pName;
+                tr.appendChild(td1);
+
+                td2 = document.createElement("td");
+                td2.innerText = res.pDesc;
+                tr.appendChild(td2);
+
+                td3 = document.createElement("td");
+                td3.innerText = res.price;
+                tr.appendChild(td3);
+
+                td4 = document.createElement("td");
+                td4.innerText = res.discount;
+                tr.appendChild(td4);
+
+                td5 = document.createElement("td");
+                td5.innerText = res.price - (res.price * (res.discount / 100));
+                tr.appendChild(td5);
+
+                td6 = document.createElement("td");
+                btn = document.createElement('button');
+                btn.innerText = "Add";
+                btn.setAttribute('type', 'submit');
+                btn.setAttribute('class', 'btn btn-info');
+                btn.setAttribute('name', 'proid');
+                btn.setAttribute('value', res.pId);
+
+                td6.appendChild(btn);
+                tr.appendChild(td6);
+                tbody.appendChild(tr);
+            }
+
+        }
+    }
+</script>
+
+<h3 class="header">Choose a Category</h3>
+
+<form method="post">
+    {% csrf_token %}
+    <select name="pcat" class="form-select  form-select-lg mb-5" onchange="getpro(this.value)">
+        {% for dt in mydata %}
+        <option value="{{ dt.pcId }}">{{ dt.pcName }}</option>
+        {% endfor %}
+    </select>
+    <table class="table table-stripped table-dark table hover table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Discount(%)</th>
+                <th>Net Price</th>
+                <th>Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+</form>
+
+{% endblock body %}

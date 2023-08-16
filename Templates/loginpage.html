@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="row justify-content-evenly">
+    <h3>Emall Login Page</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- <table>{{ myform }}</table> -->
+        <pre>
+        UserID  : <input type="text" name="uid">
+        Password: <input type="text" name="pwd"> 
+                    <input type="submit" name="login" value="Login Now" class="btn btn-secondary">
+    </pre>
+    </form>
+
+    <pre>
+    <h3>New to emall, please register</h3>
+            <a href="adduser"><button class="btn btn-secondary">Create New Account</button></a>
+</pre>
+</div>
+{% endblock body %}

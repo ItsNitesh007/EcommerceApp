@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Add Product Category</title>
+{% endblock title %}
+
+
+{% block body %}
+<form method="POST" class="form">
+    {% csrf_token %}
+
+    <table>{{ myform }}</table>
+    <input type="submit" value="Add Category" class="btn btn-dark">
+</form>
+{% endblock body %}

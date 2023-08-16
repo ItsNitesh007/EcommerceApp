@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>New Complaint</title>
+{% endblock title %}
+
+
+{% block body %}
+<h2 class="header">Add a new Complaint</h2>
+<div class="" style="align-items: center;">
+    <form method="POST">
+        {% csrf_token %}
+        <table>{{myform}}</table>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+</div>
+
+<script>
+    document.getElementsByName('compDate')[0].setAttribute('readonly', 'true');
+    document.getElementsByName('status')[0].setAttribute('readonly', 'true');
+    document.getElementsByName('response')[0].setAttribute('readonly', 'true');
+    document.getElementsByName('userId')[0].setAttribute('disabled', 'true');
+    document.getElementsByName('compId')[0].setAttribute('disabled', 'true');
+</script>
+{% endblock body %}

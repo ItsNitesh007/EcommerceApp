@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+<title>Show User</title>
+{% endblock title %}
+
+
+
+{% block body %}
+<h1 class="head"></h1>
+<table class="table table-bordered table-hover table-stripped">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>User Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for au in userData %}
+        <tr>
+
+            <td>{{au.userId}}</td>
+            <td>{{au.userType}}</td>
+            <td><a href="{% url 'userdetails' id=au.userId %}"><button class="btn btn-danger">Delete User</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock body %}

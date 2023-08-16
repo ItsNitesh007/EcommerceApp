@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Remove Category</title>
+{% endblock title %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <table>{{ myform }}</table>
+    <input type="submit" value="Remove">
+</form>
+
+
+
+
+<script>alert('You are about to remove a Category. Please go back if, this is not intentional')</script>
+{% endblock body %}

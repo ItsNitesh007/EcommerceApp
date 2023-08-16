@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Update Category</title>
+{% endblock title %}
+
+{% block body %}
+<h1 class="header">Product Category Modification Form</h1>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    <table>{{ myform }}</table>
+    <input type="submit" value="Update" class="btn btn-dark">
+</form>
+<script>
+    document.getElementsByName("pcId")[0].setAttribute("readonly", "true");
+</script>
+
+{% endblock body %}

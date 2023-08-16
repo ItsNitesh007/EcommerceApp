@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>All Complaints</title>
+
+{% endblock title %}
+
+
+{% block body %}
+<table class="table table-stripped table-dark table hover table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Response</th>
+            <th>user Id</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for dt in mydata %}
+        <tr>
+            <td><a href="{% url 'response' id=dt.compId %}">{{dt.compId}}</a></td>
+            <td>{{dt.compDesc}}</td>
+            <td>{{dt.compDate}}</td>
+            <td>{{dt.status}}</td>
+            <td>{{dt.response}}</td>
+            <td>{{dt.userId.userId}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+{% endblock body %}

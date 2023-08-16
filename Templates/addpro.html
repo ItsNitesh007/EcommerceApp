@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Add Product</title>
+{% endblock title %}
+
+
+{% block body %}
+<h3 class="header">Add New Product</h3>
+<form method="POST">
+    {% csrf_token %}
+    <table>{{ myform }}</table>
+    <input type="submit" value="Add" class="btn btn-info">
+</form>
+{% endblock body %}

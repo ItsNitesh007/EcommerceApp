@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Show Profile</title>
+{% endblock title %}
+
+
+{% block body %}
+<form method="POST">
+    <h4 class="header">User Profile</h4>
+    {% csrf_token %}
+    <!-- <pre>
+    User Id : <input type="text" name="userId">
+    age     : <input type="text" name="age">
+    address : <input type="text" name="address">
+    mob     : <input type="text" name="mob">
+    email   : <input type="text" name="email">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="update" class="btn btn-primary">
+</pre> -->
+
+    <table>{{myform}}</table>
+    <input type="submit" value="Save">
+</form>
+{% endblock body %}
